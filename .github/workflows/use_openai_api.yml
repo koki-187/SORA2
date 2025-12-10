@@ -1,0 +1,19 @@
+name: Use OpenAI API Key
+on:
+  push:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run script
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPEN_AI_API }}
+        run: python chatgpt_github_search_Version1.py
